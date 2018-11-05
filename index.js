@@ -7,7 +7,13 @@ const { addAssignees, translate, referToFaq, notifyEmptyFiddle } = require('./se
 const util = require('./utils')
 const github = require('./github')
 
+const config = {
+  enableAssign: false
+}
+
 const app = new Koa()
+
+
 
 app.use(logger())
 app.use(bodyParser)
@@ -19,8 +25,8 @@ app.use(async (ctx, next) => {
     return
   }
 
-  if (action === 'labeled') {
-    // await addAssignees(ctx, issue)
+  if (config.enableAssign && action === 'labeled') {
+    await addAssignees(ctx, issue)
     return
   }
 
