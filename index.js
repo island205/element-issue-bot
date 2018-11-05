@@ -20,7 +20,7 @@ app.use(async (ctx, next) => {
   }
 
   if (action === 'labeled') {
-    await addAssignees(ctx, issue)
+    // await addAssignees(ctx, issue)
     return
   }
 
